@@ -10,6 +10,7 @@ BestFoMSoFar = 0.000000000001
 BestFamily = []
 
 #-------------------------------------------Input--------------------------------------------------
+target_wavelength=580*nm
 min_diameter = 100
 min_distance = 100
 lateral_period=400.00
@@ -253,7 +254,7 @@ class GA:
         return array(Family)
                     
 
-    def CrossingOfIndividualsOfDifferentFamilies(self, Individual_1, Individual_2, CrossingOverRate=0.65):
+    def CrossingOfIndividualsOfDifferentFamilies(self, Individual_1, Individual_2, CrossingOverRate=CrossingOverRate):
         print("Starting The crossover")
         Child_1=copy(Individual_1)
         Child_2=copy(Individual_2)
