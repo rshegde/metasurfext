@@ -20,7 +20,7 @@ NumberOfGenerations=50
 IndividualsInSingleGen=2
 mutationRate=0.07
 CrossingOverRate=0.95
-#----------------------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------------------------
 
 def sq_distance_mod(x0,y0,x1,y1,x_period,y_period):
     """squared distance between two points in a 2d periodic structure"""
