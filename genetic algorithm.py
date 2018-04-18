@@ -1,9 +1,7 @@
 from numpy.random import randint, uniform, shuffle
 from numpy import concatenate, array, mean, append, empty, linspace, tile, stack, copy
 import random
-
 from grating import*
-
 
 #------------------------------Input parameters------------------------------#
 BestFoMSoFar = 0.000000000001
