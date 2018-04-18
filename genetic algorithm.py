@@ -19,11 +19,11 @@ n_tio2=4.69                           #refractive index of nanoantennae material
 
 #Genetic_parameters#
 
-Family_size=2
-IndividualsInSingleGen=100
-NumberOfGenerations=100
-mutationRate=0.07
-CrossingOverRate=0.95
+Family_size=2                         # Size of family
+IndividualsInSingleGen=100            # number of individuals in a single generation
+NumberOfGenerations=100               # number of generations
+mutationRate=0.07                     # mutation probability
+CrossingOverRate=0.95                 # crossover probability
 
 #----------------------------------------------------------------------------#
 
