@@ -5,21 +5,21 @@ import random
 from grating import*
 
 
-###==================== Helper functions copied from opti_alg_Mine.py and changed ==============###
+#------------------------------Input parameters------------------------------#
+BestFoMSoFar = 0.000000000001
+BestFamily = []
+FoM_Dict_ByGeneration={}
+FoundFamilies = 0
 min_diameter = 100
 min_distance = 100
 lateral_period=400.00
 grating_period=678.8115774243539
 target_wavelength=520
-FoM_Dict_ByGeneration={}
-FoundFamilies = 0
-BestFoMSoFar = 0.000000000001
-BestFamily = []
 cyl_height=500
+n_glass=1.46                          #refractive index of substrate material 
+n_tio2=4.69                           #refractive index of nanoantennae material
 
-n_glass=1.46
-n_tio2=4.69
-
+#Genetic_parameters#
 
 Family_size=2
 IndividualsInSingleGen=100
@@ -27,15 +27,7 @@ NumberOfGenerations=100
 mutationRate=0.07
 CrossingOverRate=0.95
 
-
-
-
-
-
-
-
-
-
+#----------------------------------------------------------------------------#
 
 def sq_distance_mod(x0,y0,x1,y1,x_period,y_period):
     """squared distance between two points in a 2d periodic structure"""
