@@ -12,14 +12,14 @@ min_diameter = 100
 min_distance = 100
 lateral_period=400.00
 grating_period=678.8115774243539
-target_wavelength=520
-cyl_height=500
+target_wavelength=520                 #wavelength of design
+cyl_height=500                        #height of nanoantennae
 n_glass=1.46                          #refractive index of substrate material 
 n_tio2=4.69                           #refractive index of nanoantennae material
 
 #Genetic_parameters#
 
-Family_size=2                         # Size of family
+Family_size=2                         # size of family
 IndividualsInSingleGen=100            # number of individuals in a single generation
 NumberOfGenerations=100               # number of generations
 mutationRate=0.07                     # mutation probability
