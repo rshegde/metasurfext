@@ -4,24 +4,38 @@ import random
 
 from grating import*
 
+
+###==================== Helper functions copied from opti_alg_Mine.py and changed ==============###
+min_diameter = 100
+min_distance = 100
+lateral_period=400.00
+grating_period=678.8115774243539
+target_wavelength=520
 FoM_Dict_ByGeneration={}
 FoundFamilies = 0
 BestFoMSoFar = 0.000000000001
 BestFamily = []
+cyl_height=500
 
-#-------------------------------------------Input--------------------------------------------------
-target_wavelength=580*nm
-min_diameter = 100
-min_distance = 100
-lateral_period=400.00
-grating_period=902.31
+n_glass=1.46
+n_tio2=4.69
 
-FamilySize=3
-NumberOfGenerations=50
-IndividualsInSingleGen=2
+
+Family_size=2
+IndividualsInSingleGen=100
+NumberOfGenerations=100
 mutationRate=0.07
 CrossingOverRate=0.95
-#--------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
 
 def sq_distance_mod(x0,y0,x1,y1,x_period,y_period):
     """squared distance between two points in a 2d periodic structure"""
@@ -121,13 +135,13 @@ def ellipse_pts(x_center, y_center, r_x, r_y, angle, num_points=80):
 
 def FoM(FamilyOfGrating):
     global BestFoMSoFar
-    my_grating =Grating(lateral_period=400*nm, grating_period=grating_period*nm, cyl_height=550.0*nm, n_glass=0, n_tio2=0, xyrra_list_in_nm_deg=np.array(FamilyOfGrating), data=None)    
+    my_grating =Grating(lateral_period=lateral_period*nm, grating_period=grating_period*nm, cyl_height=cyl_height*nm, n_glass=n_glass, n_tio2=n_tio2, xyrra_list_in_nm_deg=np.array(FamilyOfGrating), data=None)    
     my_grating.get_xyrra_list(units='nm,deg', replicas=1)
     my_grating.xyrra_list_in_nm_deg
     my_grating.copy
-    my_grating.run_lua(target_wavelength=580*nm,subfolder='temp')
-    my_grating.run_lua_initiate(target_wavelength=580*nm,subfolder='temp')
-    FigureOfMerit = my_grating.run_lua(subfolder='temp',target_wavelength=580*nm,numG=50)
+    my_grating.run_lua(target_wavelength=target_wavelength*nm,subfolder='temp')
+    my_grating.run_lua_initiate(target_wavelength=target_wavelength*nm,subfolder='temp')
+    FigureOfMerit = my_grating.run_lua(subfolder='temp',target_wavelength=target_wavelength*nm,numG=100)
     if FigureOfMerit > BestFoMSoFar:
         BestFoMSoFar=FigureOfMerit
         BestFamily = FamilyOfGrating
@@ -138,11 +152,11 @@ def FoM(FamilyOfGrating):
 class GA:
 
     def __init__(self, StartingGuess=None, xmin=(-249.9999999), ymin=(-249.99999999),
-                 xmax=grating_period+249.9999999, ymax=400+249.99999999,
+                 xmax=902.31+249.9999999, ymax=400+249.99999999,
                  majorAxisMin=50, MajorAxisMax=150,
                  minorAxisMin=50, MinorAxisMax=150,angleMin=(0.00001),
                  angleMax=(359.99999999),
-                 FamilySize=3, IndividualsInSingleGen =900, NumberOfGenerations=50, converged=False):
+                 FamilySize=Family_size, IndividualsInSingleGen =IndividualsInSingleGen, NumberOfGenerations=NumberOfGenerations, converged=False):
         self.StartingGuess = StartingGuess
         self.IndividualsInSingleGen = IndividualsInSingleGen
         self.NumberOfGenerations = NumberOfGenerations
@@ -180,7 +194,7 @@ class GA:
          #   Individual_4=self.Individual()
          #   Individual_5=self.Individual()
             
-            StartingFamily = array([Individual_1,Individual_2,Individual_3])
+            StartingFamily = array([Individual_1,Individual_2])
 
             while (not validate(StartingFamily, print_details=True)):
                 Individual_1=self.Individual()
@@ -189,7 +203,7 @@ class GA:
               #  Individual_4=self.Individual()
              #   Individual_5=self.Individual()
             
-                StartingFamily = array([Individual_1,Individual_2,Individual_3])
+                StartingFamily = array([Individual_1,Individual_2])
 
             FoundFamilies += 1
             print("So far we have found %d families \n"%FoundFamilies)
@@ -219,7 +233,7 @@ class GA:
         
 
 
-    def MutateIndividualsInFamily(self, Family, mutationRate = 0.07, maxTrials=200):
+    def MutateIndividualsInFamily(self, Family, mutationRate =mutationRate, maxTrials=2000):
         print("Inside Mutate function")
         count = 0
         while((not validate(Family, print_details=True) and count<=maxTrials//20) or count == 0 ):
@@ -234,7 +248,7 @@ class GA:
                             print("This is %d trial to Mutate"%counter)
                             counter += 1
                             for i in range(0,5):
-                                Percentage_Change= random.uniform(0.00001,0.12000)
+                                Percentage_Change= random.uniform(0.00001,0.20)
                                 PlusOrMinus = random.choice('+-')
                                 if PlusOrMinus == '+':
                                     eachMember[i]=CopyEachMember[i]
