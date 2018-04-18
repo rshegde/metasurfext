@@ -123,7 +123,7 @@ def ellipse_pts(x_center, y_center, r_x, r_y, angle, num_points=80):
         xy_list[i,1] = y_center + dx0 * math.sin(angle) + dy0 * math.cos(angle)
     return xy_list
 
-#### ============= End of Helper functions ============================#####
+#### =============Start of Genetic algorithm ============================#####
 
 def FoM(FamilyOfGrating):
     global BestFoMSoFar
@@ -166,7 +166,6 @@ class GA:
         self.angleMax = angleMax
 
     def Individual(self):
-
         two_axis= [uniform(low=self.majorAxisMin,high=self.MajorAxisMax,size=1), uniform(low=self.minorAxisMin,high=self.MinorAxisMax,size=1)]
         r_major= max(two_axis)
         r_minor= min(two_axis)
@@ -174,9 +173,6 @@ class GA:
         return Indiv
 
             
-        
-
-
     def Family(self, Families=None):
         if Families==None:
             global FoundFamilies
