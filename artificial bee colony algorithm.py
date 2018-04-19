@@ -17,13 +17,15 @@ from opti_alg_Mine_2 import*
 #---------------------------------------------------set your parameters here---------------------------------------------------------#
 
 BestFoMSoFar = 0.0000000000001                  #### Do not edit this####
-target_wavelength=520                           #design wavelength            
+target_wavelength=520                           #design wavelength 
+n_glass=1.459                                   #refractive index of substrate material 
+n_tio2=4.69                                     #refractive index of nanoantennae material
 NumberOfFoodSources = 150                       #larger this number, better the quality of initial FoodSource
 cyl_height = 500                                #height of nanoantennae
 lateral_period=400                              #period of cell in lateral direction
 grating_period=678.81                           #grating period of cell
-min_diameter = 50.0
-min_distance = 50.0
+min_diameter = 50.0                             #minimum diameter of nanoantennae
+min_distance = 50.0                             #minimum distance between two nanoantennae
 TrialsBeforeBeeIsTired = 400                    #larger the number more time Employed and onlooker bees will spend in finding a better food source
 num_EmployedBees = 150                          #number of employed bees(note: keep Employed and Onlooker bees same number).
 num_OnLookerBees =150                           #number of onlooker bees
@@ -132,7 +134,7 @@ def ellipse_pts(x_center, y_center, r_x, r_y, angle, num_points=80):
 
 
 def FoM(FamilyOfGrating, lateral_period, grating_period, cyl_height):
-    my_grating =Grating(lateral_period=lateral_period*nm, grating_period= grating_period*nm, cyl_height=cyl_height*nm, n_glass=1.459, n_tio2=4.69, xyrra_list_in_nm_deg=np.array(FamilyOfGrating), data=None)    
+    my_grating =Grating(lateral_period=lateral_period*nm, grating_period= grating_period*nm, cyl_height=cyl_height*nm, n_glass=n_glass, n_tio2=n_tio2, xyrra_list_in_nm_deg=np.array(FamilyOfGrating), data=None)    
     my_grating.get_xyrra_list(units='nm,deg', replicas=10)
     my_grating.xyrra_list_in_nm_deg
     my_grating.copy
