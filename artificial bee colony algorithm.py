@@ -13,8 +13,31 @@ import random
 from opti_alg_Mine_2 import*
 
 
-###==================== Helper functions copied from opti_alg_Mine.py and changed ==============###
 
+#---------------------------------------------------set your parameters here---------------------------------------------------------#
+
+BestFoMSoFar = 0.0000000000001                  #### Do not edit this####
+target_wavelength=520                           #design wavelength            
+NumberOfFoodSources = 150                       #larger this number, better the quality of initial FoodSource
+cyl_height = 500                                #height of nanoantennae
+lateral_period=400                              #period of cell in lateral direction
+grating_period=678.81                           #grating period of cell
+min_diameter = 50.0
+min_distance = 50.0
+TrialsBeforeBeeIsTired = 400                    #larger the number more time Employed and onlooker bees will spend in finding a better food source
+num_EmployedBees = 150                          #number of employed bees(note: keep Employed and Onlooker bees same number).
+num_OnLookerBees =150                           #number of onlooker bees
+num_ScoutBees = 0                               #number of scout bees (note: start with a value of zero)
+a = -0.1250                                     #a and b dictate how wide the memetic search should be. "a" must be negative and opposite of "b"
+b = 0.1250                                      #a and b dictate how wide the memetic search should be, "b" must be positive and opposite of "a"
+Epsilon = 0.001                                 #stopping criteria of Memetic Phase, Lower the number, longer the search, more chances of finding a better value
+Psi = 0.681                                     #golden ratio
+Pr = 0.8                                        #probability to update the position
+C = 1.5                                         #a non negative constant for position update
+FamilySize = 2                                  #number of members in the Family
+NumberOfGenerations = 100                       #number of generations(cycles) of Food Search of Emp Bee, Onllok Bee, Scout Bee and Memetic phase
+
+##---------------------------------------------------------------------------------------------------------------------------------##
 
 
 def sq_distance_mod(x0,y0,x1,y1,x_period,y_period):
@@ -106,31 +129,7 @@ def ellipse_pts(x_center, y_center, r_x, r_y, angle, num_points=80):
         xy_list[i,1] = y_center + dx0 * math.sin(angle) + dy0 * math.cos(angle)
     return xy_list
 
-#### ============= End of Helper functions ============================#####
 
-#### Set your global parameters here ######
-target_wavelength=520
-NumberOfFoodSources = 150 ### Larger this number, better the quality of initial FoodSource
-cyl_height = 500
-lateral_period=400
-grating_period=678.81
-BestFoMSoFar = 0.0000000000001 #### Do not edit this
-min_diameter = 50.000
-min_distance = 50.000
-TrialsBeforeBeeIsTired = 400 #### Larger the number more time Employed and onlooker bees will spend in finding a better food source
-num_EmployedBees = 150 ###Keep Employed and Onlooker bees same number
-num_OnLookerBees =150 ###Keep Employed and Onlooker bees same number
-num_ScoutBees = 0 #### Start with a value of zero
-a = -0.1250 ### a and b dictate how wide the memetic search should be. "a" must be negative and opposite of "b"
-b = 0.1250 ### a and b dictate how wide the memetic search should be, "b" must be positive and opposite of "a"
-Epsilon = 0.001 #### Stopping criteria of Memetic Phase, Lower the number, longer the search, more chances of finding a better value
-Psi = 0.681 #### Golden Ratio
-Pr = 0.8 ### Probability to update the position
-C = 1.5 ### A non negative constant for position update
-FamilySize = 2 ### Number of members in the Family
-NumberOfGenerations = 100 ### Number of generations(cycles) of Food Search of Emp Bee, Onllok Bee, Scout Bee and Memetic phase
-
-#### End of Global parameters ########
 
 def FoM(FamilyOfGrating, lateral_period, grating_period, cyl_height):
     my_grating =Grating(lateral_period=lateral_period*nm, grating_period= grating_period*nm, cyl_height=cyl_height*nm, n_glass=1.459, n_tio2=4.69, xyrra_list_in_nm_deg=np.array(FamilyOfGrating), data=None)    
@@ -265,7 +264,6 @@ class MeABC:
                 print("Found the Best Food Patch")
                 return each
         
-    
     def MemeticSearchPhase(self, a, b, Epsilon, Psi, BestFoodPatch):
         assert a<b,"a must be less than b"
         BestFoM = BestFoodPatch[0][5][0]
