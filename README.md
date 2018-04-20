@@ -4,5 +4,6 @@ These algorithms are developed for designing and optimization of metabeam deflec
 
 ## General set up
 
-- Install python 3.4 version or later version: https://anaconda.org/anaconda/python
-- 
+- Install python 3.4 or later version: https://anaconda.org/anaconda/python
+- Download and install S4 (RCWA based software): https://web.stanford.edu/group/fan/S4/install.html
+- Install Lua 5.2
