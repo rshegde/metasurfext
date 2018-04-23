@@ -12,10 +12,10 @@ min_diameter = 100
 min_distance = 100
 lateral_period=400.00
 grating_period=678.8115774243539
-target_wavelength=520                 #wavelength of design
-cyl_height=500                        #height of nanoantennae
-n_glass=1.46                          #refractive index of substrate material 
-n_tio2=4.69                           #refractive index of nanoantennae material
+target_wavelength=520                 # wavelength of design
+cyl_height=500                        # height of nanoantennae
+n_glass=1.46                          # refractive index of substrate material 
+n_tio2=4.69                           # refractive index of nanoantennae material
 
 #Genetic_parameters#
 
