@@ -7,5 +7,5 @@ These algorithms are developed for designing and optimization of beam deflectors
 - Install python 3.4 or later version: https://anaconda.org/anaconda/python
 - Download and install S4 (RCWA based software): https://web.stanford.edu/group/fan/S4/install.html
 - Install Lua 5.2 or latest version: https://www.lua.org/download.html
--
+- Keep grating.py, grating.lua,S4 and algorithm file in a same folder
 
