@@ -13,5 +13,5 @@ Using the given
 ## Using the code
 Now, to optimize beam deflector,
 
-The first step is to set the input parameters. The code is genetic algorithm.py or artificial bee colony.py which calls grating.py (which in turn calls grating.lua, the script that directly interfaces with S4). 
+The first step is to set the input parameters. The code is genetic algorithm.py or artificial bee colony.py which calls grating.py (which in turn calls grating.lua, the script that directly interfaces with S4). you can tune the hyper parameters of the algortihms to improve diffraction efficieny further.
 
